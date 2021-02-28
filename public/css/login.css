@@ -1,0 +1,36 @@
+.main {
+    width: 340px;
+    margin: 0 auto;
+}
+
+.main .header h1 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -.5px;
+}
+
+.main .header {
+    margin: 50px auto auto 20px;
+    text-align: center!important;
+}
+
+.main .header a >img {
+    overflow: hidden;
+    vertical-align: text-bottom;
+    border-radius: 50%;
+}
+
+/*.main form #label-link label {*/
+    /*display: block;*/
+    /*margin-bottom: 7px;*/
+    /*text-align: left;*/
+/*}*/
+
+/*.main form a.label-link {*/
+    /*float: right;*/
+    /*font-size: 12px;*/
+/*}*/
+
+.main .message p {
+    margin-top:7px;
+}

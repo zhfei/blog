@@ -1,0 +1,69 @@
+{{extend '../_layouts/home.html'}}
+
+{{block 'title'}} {{'多人博客-首页'}} {{/block}}
+
+{{block 'body'}}
+<section class="container">
+
+    <div class="row">
+        <div class="col-md-5">
+            <form id="new_topic_form" method="post">
+                <input type="text" name="email" value="{{ user.email }}" hidden>
+                <input type="text" name="nickname" value="{{ user.nickname }}" hidden>
+                <input type="text" name="avatar" value="{{ user.avatar }}" hidden>
+                <div class="form-group">
+                    <label >选择板块</label>
+                    <select class="form-control" name="plate">
+                        <option value="0">分享</option>
+                        <option value="1">问答</option>
+                        <option value="2">招聘</option>
+                        <option value="3">客户端测试</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">标题</label>
+                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">内容</label>
+                    <div class="form-group">
+                        <textarea class="form-group" name="content" rows="5" cols="50" placeholder="发表内容"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{{/block}}
+
+
+{{block 'script'}}
+    <script>
+        $('#new_topic_form').on('submit', function (event) {
+            //阻止默认提交事件，自定义异步提交
+            event.preventDefault()
+            var formData = $(this).serialize()
+            $.ajax({
+                url:'/topic/new',
+                type:'post',
+                data:formData,
+                dataType:'json',
+                success:function (data) {
+                    var err_code = data.err_code
+                    if (err_code === 0) {
+                        //异步请求，服务器重定向无效
+                        window.location.href = '/'
+//                        window.alert('发表成功')
+                    } else if (err_code === 500){
+                        window.alert('服务器忙，请稍后重试')
+                    }
+                }
+            })
+
+        })
+    </script>
+{{/block}}
