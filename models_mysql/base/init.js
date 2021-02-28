@@ -3,7 +3,7 @@ let env = {
     host     : 'localhost',
     user     : 'root',
     password : 'root123456',
-    database : 'User'
+    database : 'Blog'
 };
 
 //1.创建连接池
